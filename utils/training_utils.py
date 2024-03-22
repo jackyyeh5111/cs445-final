@@ -46,6 +46,7 @@ def save_checkpoint(epoch, model, optimizer, path, ckpt_name='checkpoint'):
         'model_state_dict': model_state,
         'optimizer_state_dict': optimizer.state_dict(),
     }
+    print ('savepath:', savepath)
     torch.save(state, savepath)
 
 

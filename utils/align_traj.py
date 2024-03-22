@@ -87,7 +87,12 @@ def align_scale_c2b_use_a2b(traj_a, traj_b, traj_c=None):
     # scale estimated poses to colmap scale
     # s_a2b: a*s ~ b
     scale_a2b = pts_dist_max(t_b) / pts_dist_max(t_a)
-
+    
+    device = scale_a2b.device
+    traj_c = traj_c.to(device)
+    
+    print ('traj_c.get_device():', traj_c.get_device())
+    print ('scale_a2b.get_device():', scale_a2b.get_device())
     traj_c[:, :3, 3] *= scale_a2b
 
     if traj_c.shape[1] == 3:
